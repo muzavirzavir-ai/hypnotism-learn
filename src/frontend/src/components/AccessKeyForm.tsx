@@ -19,8 +19,15 @@ interface AccessKeyFormProps {
   onSuccess: (identifier: string) => void;
   /** When true, also collect the student's identifier for dashboard lookup. */
   collectIdentifier?: boolean;
+  /**
+   * When provided, entering the username "admin" verifies the key as an
+   * admin key (checked server-side) and calls this instead of onSuccess.
+   */
+  onAdminSuccess?: () => void;
   className?: string;
 }
+
+const ADMIN_USERNAME = "admin";
 
 type FormError =
   | { type: "invalidKey" }
@@ -40,6 +47,7 @@ export function AccessKeyForm({
   submitKey,
   onSuccess,
   collectIdentifier = false,
+  onAdminSuccess,
   className,
 }: AccessKeyFormProps) {
   const { t } = useLanguage();
@@ -61,12 +69,22 @@ export function AccessKeyForm({
 
     setError(null);
     const enteredIdentifier = identifier.trim();
-    const outcome = await signIn(kind, trimmed, enteredIdentifier || undefined);
+    const isAdminLogin =
+      collectIdentifier &&
+      onAdminSuccess !== undefined &&
+      enteredIdentifier.toLowerCase() === ADMIN_USERNAME;
+    const outcome = isAdminLogin
+      ? await signIn("admin", trimmed)
+      : await signIn(kind, trimmed, enteredIdentifier || undefined);
 
     if (outcome.status === "ok") {
       setKey("");
       setIdentifier("");
-      onSuccess(enteredIdentifier);
+      if (isAdminLogin) {
+        onAdminSuccess();
+      } else {
+        onSuccess(enteredIdentifier);
+      }
       return;
     }
     if (outcome.status === "invalidKey") {

@@ -164,6 +164,7 @@ export function HeroSection() {
               submitKey="access.submit"
               collectIdentifier
               onSuccess={(identifier) => void handleSuccess(identifier)}
+              onAdminSuccess={() => void navigate({ to: "/admin" })}
             />
           )}
         </div>
