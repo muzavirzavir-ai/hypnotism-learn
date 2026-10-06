@@ -1,0 +1,305 @@
+type _ImmutableObjectStorageRefillResult = 
+ record {
+   success: opt bool;
+   topped_up_amount: opt nat;
+ };
+type _ImmutableObjectStorageRefillInformation = record {
+                                                  proposed_top_up_amount:
+                                                   opt nat;};
+type _ImmutableObjectStorageCreateCertificateResult = 
+ record {
+   blob_hash: text;
+   method: text;
+ };
+type VerifyResult = 
+ variant {
+   invalidKey;
+   ok: Session;
+   rateLimited: record {retryAfterSeconds: nat;};
+ };
+type Value = 
+ variant {
+   "bool": bool;
+   float: float64;
+   "int": int;
+   "nat": nat;
+   "null";
+   "text": text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type Timestamp = int;
+type StudentView = 
+ record {
+   grantedClasses: vec ClassId;
+   progress: Progress;
+   student: Student;
+ };
+type StudentSelfView = 
+ record {
+   id: StudentId;
+   identifier: text;
+   name: text;
+   watermarkEnabled: bool;
+ };
+type StudentInput = 
+ record {
+   identifier: text;
+   name: text;
+ };
+type StudentId = nat;
+type StudentDashboard = 
+ record {
+   classes: vec StudentClassView;
+   completedCount: nat;
+   currentCountdownEndsAt: opt Timestamp;
+   remainingSeconds: nat;
+   studentId: StudentId;
+   totalCount: nat;
+ };
+type StudentClassView = 
+ record {
+   classInfo: Class;
+   completed: bool;
+   countdownEndsAt: opt Timestamp;
+   locked: bool;
+   remainingSeconds: nat;
+ };
+type Student = 
+ record {
+   createdAt: Timestamp;
+   id: StudentId;
+   identifier: text;
+   name: text;
+   watermarkEnabled: bool;
+ };
+type SessionView = 
+ record {
+   issuedAt: Timestamp;
+   role: Role;
+ };
+type SessionToken = text;
+type Session = 
+ record {
+   issuedAt: Timestamp;
+   role: Role;
+   token: SessionToken;
+ };
+type Role = 
+ variant {
+   admin;
+   student;
+ };
+type Result__1 = 
+ variant {
+   err: Error;
+   ok;
+ };
+type Result = 
+ record {
+   hasMore: bool;
+   rows: vec vec Cell;
+ };
+type Progress = 
+ record {
+   completedClasses: vec ClassId;
+   countdownEndsAt: opt Timestamp;
+   currentClassId: opt ClassId;
+   remainingSeconds: nat;
+   studentId: StudentId;
+ };
+type MediaRef = 
+ record {
+   "blob": blob;
+   id: MediaId;
+   kind: MediaKind;
+   mimeType: text;
+   name: text;
+   uploadedAt: Timestamp;
+ };
+type MediaKind = 
+ variant {
+   file;
+   poster;
+   video;
+ };
+type MediaId = nat;
+type LessonInput = 
+ record {
+   bodyEn: text;
+   bodyMl: text;
+   classId: ClassId;
+   titleEn: text;
+   titleMl: text;
+ };
+type LessonId = nat;
+type Lesson = 
+ record {
+   bodyEn: text;
+   bodyMl: text;
+   classId: ClassId;
+   files: vec MediaRef;
+   id: LessonId;
+   order: nat;
+   poster: opt MediaRef;
+   titleEn: text;
+   titleMl: text;
+   video: opt MediaRef;
+ };
+type KeyKind = 
+ variant {
+   admin;
+   student;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type CompleteResult = 
+ variant {
+   alreadyCompleted;
+   notAuthorized;
+   ok: record {
+         countdownEndsAt: Timestamp;
+         nextClassId: opt ClassId;
+       };
+ };
+type ClassInput = 
+ record {
+   descriptionEn: text;
+   descriptionMl: text;
+   published: bool;
+   titleEn: text;
+   titleMl: text;
+ };
+type ClassId = nat;
+type Class = 
+ record {
+   createdAt: Timestamp;
+   descriptionEn: text;
+   descriptionMl: text;
+   id: ClassId;
+   locked: bool;
+   order: nat;
+   published: bool;
+   titleEn: text;
+   titleMl: text;
+   updatedAt: Timestamp;
+ };
+type Cell = 
+ record {
+   name: text;
+   value: Value;
+ };
+type AuditId = nat;
+type AuditEntry = 
+ record {
+   action: AuditAction;
+   actorPrincipal: principal;
+   at: Timestamp;
+   detail: text;
+   id: AuditId;
+ };
+type AuditAction = 
+ variant {
+   accessGranted;
+   accessRevoked;
+   classCreated;
+   classDeleted;
+   classLocked;
+   classPublished;
+   classUnlocked;
+   classUpdated;
+   countdownOverridden;
+   countdownReset;
+   failedKey;
+   lessonChanged;
+   mediaChanged;
+   signIn;
+   signOut;
+   studentChanged;
+   watermarkToggled;
+ };
+service : {
+  _immutableObjectStorageBlobsAreLive: (hashes: vec blob) -> (vec bool) query;
+  _immutableObjectStorageBlobsToDelete: () -> (vec blob) query;
+  _immutableObjectStorageConfirmBlobDeletion: (blobs: vec blob) -> ();
+  _immutableObjectStorageCreateCertificate: (blobHash: text) ->
+   (_ImmutableObjectStorageCreateCertificateResult);
+  _immutableObjectStorageRefillCashier: (refillInformation:
+   opt _ImmutableObjectStorageRefillInformation) ->
+   (_ImmutableObjectStorageRefillResult);
+  _immutableObjectStorageUpdateGatewayPrincipals: () -> ();
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result__1);
+  _internet_identity_sign_in_start: () -> (blob);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  attachLessonMedia: (lessonId: LessonId, kind: variant {
+                                                  file;
+                                                  poster;
+                                                  video;
+                                                }, name: text, mimeType:
+   text, "blob": blob) -> (opt Lesson);
+  completeClass: (studentId: StudentId, classId: ClassId) -> (CompleteResult);
+  createClass: (input: ClassInput) -> (Class);
+  createLesson: (input: LessonInput) -> (Lesson);
+  createStudent: (input: StudentInput) -> (Student);
+  deleteClass: (id: ClassId) -> (bool);
+  deleteLesson: (id: LessonId) -> (bool);
+  deleteStudent: (id: StudentId) -> (bool);
+  execute: (qJson: text) -> (Result) query;
+  getApiDoc: () -> (text) query;
+  getAuthorizedLessonMedia: (token: SessionToken, studentId: StudentId,
+   lessonId: LessonId) -> (opt Lesson) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getClass: (id: ClassId) -> (opt Class) query;
+  getSession: (token: SessionToken) -> (opt SessionView) query;
+  getStudent: (id: StudentId) -> (opt StudentView) query;
+  getStudentDashboard: (studentId: StudentId) -> (opt StudentDashboard) query;
+  grantClassAccess: (studentId: StudentId, classId: ClassId) -> (bool);
+  isCallerAdmin: () -> (bool) query;
+  listAudit: (limit: nat) -> (vec AuditEntry) query;
+  listClasses: () -> (vec Class) query;
+  listLessons: (classId: ClassId) -> (vec Lesson) query;
+  listStudents: () -> (vec StudentView) query;
+  overrideCountdown: (studentId: StudentId, classId: ClassId, endsAt: 
+   int) -> (bool);
+  removeLessonMedia: (lessonId: LessonId, mediaId: MediaId) -> (opt Lesson);
+  reorderClasses: (orderedIds: vec ClassId) -> ();
+  resetCountdown: (studentId: StudentId, classId: ClassId) -> (bool);
+  resolveStudent: (identifier: text) -> (opt StudentSelfView);
+  revokeClassAccess: (studentId: StudentId, classId: ClassId) -> (bool);
+  schema: () -> (text) query;
+  setClassLockForStudent: (studentId: StudentId, classId: ClassId, locked:
+   bool) -> (bool);
+  setClassLocked: (id: ClassId, locked: bool) -> (opt Class);
+  setClassPublished: (id: ClassId, published: bool) -> (opt Class);
+  setStudentWatermark: (studentId: StudentId, enabled: bool) -> (opt Student);
+  signOut: (token: SessionToken) -> ();
+  updateClass: (id: ClassId, input: ClassInput) -> (opt Class);
+  updateLesson: (id: LessonId, input: LessonInput) -> (opt Lesson);
+  updateStudent: (id: StudentId, input: StudentInput) -> (opt Student);
+  verifyAccessKey: (kind: KeyKind, key: text) -> (VerifyResult);
+}

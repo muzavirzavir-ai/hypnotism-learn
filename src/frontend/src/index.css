@@ -1,0 +1,197 @@
+/* Malayalam glyph coverage — Google Fonts CDN (bundled fonts have no Malayalam). */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 300 700;
+}
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 200 800;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 800;
+}
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --font-malayalam: "Noto Sans Malayalam", "Plus Jakarta Sans", sans-serif;
+    --radius: 0.75rem;
+
+    /* Deep Focus — light surface (fallback for light preference) */
+    --background: 0.98 0.006 275;
+    --foreground: 0.2 0.03 275;
+    --card: 1.0 0.003 275;
+    --card-foreground: 0.2 0.03 275;
+    --popover: 1.0 0.003 275;
+    --popover-foreground: 0.2 0.03 275;
+
+    --primary: 0.52 0.22 275;
+    --primary-foreground: 0.98 0.005 275;
+
+    --secondary: 0.94 0.012 275;
+    --secondary-foreground: 0.28 0.03 275;
+    --muted: 0.94 0.012 275;
+    --muted-foreground: 0.5 0.02 275;
+
+    --accent: 0.58 0.24 305;
+    --accent-foreground: 0.98 0.005 305;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0.005 25;
+    --success: 0.6 0.16 155;
+    --success-foreground: 0.98 0.005 155;
+    --warning: 0.72 0.15 85;
+    --warning-foreground: 0.2 0.03 85;
+
+    --border: 0.9 0.012 275;
+    --input: 0.9 0.012 275;
+    --ring: 0.52 0.22 275;
+
+    --chart-1: 0.55 0.22 275;
+    --chart-2: 0.6 0.24 305;
+    --chart-3: 0.68 0.16 220;
+    --chart-4: 0.7 0.17 162;
+    --chart-5: 0.75 0.19 70;
+
+    --sidebar: 0.97 0.008 275;
+    --sidebar-foreground: 0.2 0.03 275;
+    --sidebar-primary: 0.52 0.22 275;
+    --sidebar-primary-foreground: 0.98 0.005 275;
+    --sidebar-accent: 0.94 0.012 275;
+    --sidebar-accent-foreground: 0.28 0.03 275;
+    --sidebar-border: 0.9 0.012 275;
+    --sidebar-ring: 0.52 0.22 275;
+  }
+
+  .dark {
+    /* Deep Focus — primary dark surface */
+    --background: 0.15 0.028 272;
+    --foreground: 0.96 0.008 270;
+    --card: 0.19 0.032 272;
+    --card-foreground: 0.96 0.008 270;
+    --popover: 0.21 0.034 272;
+    --popover-foreground: 0.96 0.008 270;
+
+    --primary: 0.68 0.2 275;
+    --primary-foreground: 0.15 0.028 272;
+
+    --secondary: 0.24 0.036 272;
+    --secondary-foreground: 0.88 0.01 270;
+    --muted: 0.24 0.036 272;
+    --muted-foreground: 0.62 0.02 270;
+
+    --accent: 0.7 0.21 305;
+    --accent-foreground: 0.15 0.028 305;
+
+    --destructive: 0.62 0.2 22;
+    --destructive-foreground: 0.96 0.008 22;
+    --success: 0.72 0.16 158;
+    --success-foreground: 0.15 0.028 158;
+    --warning: 0.78 0.15 82;
+    --warning-foreground: 0.16 0.03 82;
+
+    --border: 0.3 0.038 272;
+    --input: 0.3 0.038 272;
+    --ring: 0.7 0.19 285;
+
+    --chart-1: 0.68 0.2 275;
+    --chart-2: 0.7 0.21 305;
+    --chart-3: 0.72 0.15 220;
+    --chart-4: 0.74 0.16 162;
+    --chart-5: 0.79 0.17 70;
+
+    --sidebar: 0.17 0.03 272;
+    --sidebar-foreground: 0.96 0.008 270;
+    --sidebar-primary: 0.68 0.2 275;
+    --sidebar-primary-foreground: 0.15 0.028 272;
+    --sidebar-accent: 0.24 0.036 272;
+    --sidebar-accent-foreground: 0.88 0.01 270;
+    --sidebar-border: 0.3 0.038 272;
+    --sidebar-ring: 0.7 0.19 285;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  :lang(ml),
+  [lang="ml"] {
+    font-family: var(--font-malayalam);
+    line-height: 1.75;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .text-gradient-primary {
+    background-image: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-subtle {
+    background-image: var(--gradient-subtle);
+  }
+  .bg-grid-fade {
+    background-image: linear-gradient(
+        to right,
+        oklch(var(--border) / 0.35) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        oklch(var(--border) / 0.35) 1px,
+        transparent 1px
+      );
+    background-size: 44px 44px;
+    mask-image: radial-gradient(
+      ellipse 80% 60% at 50% 0%,
+      #000 40%,
+      transparent 100%
+    );
+  }
+}
+
+@layer base {
+  :root {
+    --gradient-primary: linear-gradient(
+      120deg,
+      oklch(0.62 0.22 275) 0%,
+      oklch(0.66 0.24 300) 55%,
+      oklch(0.7 0.2 320) 100%
+    );
+    --gradient-subtle: linear-gradient(
+      180deg,
+      oklch(var(--card)) 0%,
+      oklch(var(--background)) 100%
+    );
+  }
+}

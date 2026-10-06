@@ -1,0 +1,331 @@
+// Version: 4.0.0
+type AccessControlState__201339279 =
+  {
+    var adminAssigned : Bool;
+    userRoles : Map__230067015<Principal, UserRole__91647283>
+  };
+type AuditAction__26668090 =
+  {
+    #accessGranted;
+    #accessRevoked;
+    #classCreated;
+    #classDeleted;
+    #classLocked;
+    #classPublished;
+    #classUnlocked;
+    #classUpdated;
+    #countdownOverridden;
+    #countdownReset;
+    #failedKey;
+    #lessonChanged;
+    #mediaChanged;
+    #signIn;
+    #signOut;
+    #studentChanged;
+    #watermarkToggled
+  };
+type AuditAction__908924158 =
+  {
+    #accessGranted;
+    #accessRevoked;
+    #classCreated;
+    #classDeleted;
+    #classLocked;
+    #classPublished;
+    #classUnlocked;
+    #classUpdated;
+    #countdownOverridden;
+    #countdownReset;
+    #failedKey;
+    #lessonChanged;
+    #mediaChanged;
+    #signIn;
+    #signOut;
+    #studentChanged;
+    #watermarkToggled
+  };
+type AuditEntry__60967837 = AuditEntry__939563140;
+type AuditEntry__787372309 =
+  {
+    action : AuditAction__26668090;
+    actorPrincipal : Principal;
+    at : Timestamp__9856652;
+    detail : Text;
+    id : AuditId__198223377
+  };
+type AuditEntry__939563140 =
+  {
+    action : AuditAction__908924158;
+    actorPrincipal : Principal;
+    at : Timestamp__301639476;
+    detail : Text;
+    id : AuditId__344307203
+  };
+type AuditId__198223377 = Nat;
+type AuditId__344307203 = Nat;
+type ClassId__186268753 = ClassId__805055241;
+type ClassId__691876597 = ClassId__805055241;
+type ClassId__805055241 = Nat;
+type ClassId__951442055 = Nat;
+type Class__199118982 =
+  {
+    createdAt : Timestamp__301639476;
+    descriptionEn : Text;
+    descriptionMl : Text;
+    id : ClassId__691876597;
+    locked : Bool;
+    order : Nat;
+    published : Bool;
+    titleEn : Text;
+    titleMl : Text;
+    updatedAt : Timestamp__301639476
+  };
+type Class__800637310 =
+  {
+    createdAt : Timestamp__9856652;
+    descriptionEn : Text;
+    descriptionMl : Text;
+    id : ClassId__951442055;
+    locked : Bool;
+    order : Nat;
+    published : Bool;
+    titleEn : Text;
+    titleMl : Text;
+    updatedAt : Timestamp__9856652
+  };
+type Completion__202524051 =
+  {
+    classId : ClassId__186268753;
+    completedAt : Timestamp__301639476;
+    studentId : StudentId__354615015
+  };
+type Completion__220429700 =
+  {
+    classId : ClassId__951442055;
+    completedAt : Timestamp__9856652;
+    studentId : StudentId__704901391
+  };
+type Countdown__744173561 =
+  {
+    classId : ClassId__951442055;
+    endsAt : Timestamp__9856652;
+    overridden : Bool;
+    startedAt : Timestamp__9856652;
+    studentId : StudentId__704901391
+  };
+type Countdown__894440024 =
+  {
+    classId : ClassId__186268753;
+    endsAt : Timestamp__301639476;
+    overridden : Bool;
+    startedAt : Timestamp__301639476;
+    studentId : StudentId__354615015
+  };
+type Data__44217153<K, V> = {var count : Nat__227979830; kvs : [var ?(K, V)]};
+type Internal__283199666<K, V> =
+  {children : [var ?Node__204828119<K, V>]; data : Data__44217153<K, V>};
+type Leaf__598469445<K, V> = {data : Data__44217153<K, V>};
+type LessonId__21783266 = Nat;
+type LessonId__3924353 = Nat;
+type LessonId__673580275 = LessonId__21783266;
+type Lesson__624227053 =
+  {
+    bodyEn : Text;
+    bodyMl : Text;
+    classId : ClassId__951442055;
+    files : [MediaRef__1062302959];
+    id : LessonId__3924353;
+    order : Nat;
+    poster : ?MediaRef__1062302959;
+    titleEn : Text;
+    titleMl : Text;
+    video : ?MediaRef__1062302959
+  };
+type Lesson__961663931 =
+  {
+    bodyEn : Text;
+    bodyMl : Text;
+    classId : ClassId__691876597;
+    files : [MediaRef__731599642];
+    id : LessonId__673580275;
+    order : Nat;
+    poster : ?MediaRef__731599642;
+    titleEn : Text;
+    titleMl : Text;
+    video : ?MediaRef__731599642
+  };
+type Map__230067015<K, V> = Map__405889023<K, V>;
+type Map__405889023<K, V> = Map__603270868<K, V>;
+type Map__603270868<K, V> =
+  {var root : Node__204828119<K, V>; var size : Nat__227979830};
+type MediaId__168331846 = Nat;
+type MediaId__455234282 = Nat;
+type MediaKind__262634858 = {#file; #poster; #video};
+type MediaKind__69666406 = {#file; #poster; #video};
+type MediaRef__1062302959 =
+  {
+    blob : Blob;
+    id : MediaId__455234282;
+    kind : MediaKind__69666406;
+    mimeType : Text;
+    name : Text;
+    uploadedAt : Timestamp__9856652
+  };
+type MediaRef__176975916 =
+  {
+    blob : Blob;
+    id : MediaId__168331846;
+    kind : MediaKind__262634858;
+    mimeType : Text;
+    name : Text;
+    uploadedAt : Timestamp__301639476
+  };
+type MediaRef__731599642 = MediaRef__176975916;
+type Nat__227979830 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__103977974 =
+  {
+    accessControlState : AccessControlState__201339279;
+    adminKey : Text;
+    auditLog : Map__230067015<AuditId__198223377, AuditEntry__787372309>;
+    auditState : {var nextAuditId : Nat};
+    classAccess : Map__230067015<StudentId__704901391, [ClassId__951442055]>;
+    classes : Map__230067015<ClassId__951442055, Class__800637310>;
+    completions :
+      Map__230067015<StudentId__704901391, [Completion__220429700]>;
+    countdowns : Map__230067015<StudentId__704901391, [Countdown__744173561]>;
+    failedAttempts :
+      Map__230067015<Principal,
+                      {
+                        var count : Nat;
+                        var lastAttemptAt : Timestamp__9856652
+                      }>;
+    lessons : Map__230067015<LessonId__3924353, Lesson__624227053>;
+    manualLocks : Map__230067015<StudentId__704901391, [ClassId__951442055]>;
+    sessions : Map__230067015<SessionToken__683905188, Session__215103314>;
+    state :
+      {var nextClassId : Nat; var nextLessonId : Nat; var nextMediaId : Nat};
+    studentKey : Text;
+    studentPrincipals : Map__230067015<Principal, StudentId__704901391>;
+    studentState : {var nextStudentId : Nat};
+    students : Map__230067015<StudentId__704901391, Student__278948304>
+  };
+type Node__204828119<K, V> =
+  {#internal : Internal__283199666<K, V>; #leaf : Leaf__598469445<K, V>};
+type OldActor__506210915 = {};
+type Role__272296134 = {#admin; #student};
+type Role__300349085 = {#admin; #student};
+type SessionToken__683905188 = Text;
+type SessionToken__701769829 = Text;
+type Session__154349959 =
+  {
+    issuedAt : Timestamp__301639476;
+    role : Role__300349085;
+    token : SessionToken__701769829
+  };
+type Session__215103314 =
+  {
+    issuedAt : Timestamp__9856652;
+    role : Role__272296134;
+    token : SessionToken__683905188
+  };
+type StudentId__354615015 = StudentId__585118929;
+type StudentId__381756952 = StudentId__585118929;
+type StudentId__585118929 = Nat;
+type StudentId__704901391 = Nat;
+type Student__26715999 =
+  {
+    createdAt : Timestamp__301639476;
+    id : StudentId__381756952;
+    identifier : Text;
+    name : Text;
+    watermarkEnabled : Bool
+  };
+type Student__278948304 =
+  {
+    createdAt : Timestamp__9856652;
+    id : StudentId__704901391;
+    identifier : Text;
+    name : Text;
+    watermarkEnabled : Bool
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__9856652 = Int;
+type UserRole__91647283 = {#admin; #guest; #user};
+{
+  "20261006_120000" : OldActor__506210915 -> NewActor__103977974
+}
+actor  {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__230067015<Principal, UserRole__91647283>
+    };
+  stable adminKey : Text;
+  stable auditLog :
+    {
+      var root : Node__204828119<AuditId__344307203, AuditEntry__60967837>;
+      var size : Nat__227979830
+    };
+  stable auditState : {var nextAuditId : Nat};
+  stable classAccess :
+    {
+      var root : Node__204828119<StudentId__585118929, [ClassId__805055241]>;
+      var size : Nat__227979830
+    };
+  stable classes :
+    {
+      var root : Node__204828119<ClassId__805055241, Class__199118982>;
+      var size : Nat__227979830
+    };
+  stable completions :
+    {
+      var root :
+        Node__204828119<StudentId__585118929, [Completion__202524051]>;
+      var size : Nat__227979830
+    };
+  stable countdowns :
+    {
+      var root : Node__204828119<StudentId__585118929, [Countdown__894440024]>;
+      var size : Nat__227979830
+    };
+  stable failedAttempts :
+    {
+      var root :
+        Node__204828119<Principal,
+                         {
+                           var count : Nat;
+                           var lastAttemptAt : Timestamp__301639476
+                         }>;
+      var size : Nat__227979830
+    };
+  stable lessons :
+    {
+      var root : Node__204828119<LessonId__21783266, Lesson__961663931>;
+      var size : Nat__227979830
+    };
+  stable manualLocks :
+    {
+      var root : Node__204828119<StudentId__585118929, [ClassId__805055241]>;
+      var size : Nat__227979830
+    };
+  stable sessions :
+    {
+      var root : Node__204828119<SessionToken__701769829, Session__154349959>;
+      var size : Nat__227979830
+    };
+  stable state :
+    {var nextClassId : Nat; var nextLessonId : Nat; var nextMediaId : Nat};
+  stable studentKey : Text;
+  stable studentPrincipals :
+    {
+      var root : Node__204828119<Principal, StudentId__585118929>;
+      var size : Nat__227979830
+    };
+  stable studentState : {var nextStudentId : Nat};
+  stable students :
+    {
+      var root : Node__204828119<StudentId__585118929, Student__26715999>;
+      var size : Nat__227979830
+    }
+};

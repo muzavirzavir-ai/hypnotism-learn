@@ -1,0 +1,21 @@
+{
+  "overview": "A secure bilingual learning platform where students unlock classes in sequence and admins manage all content and access.",
+  "features": [
+    "Student access with a private access key",
+    "Admin dashboard for classes, lessons, media, and students",
+    "Server-timed 24-hour class unlock countdown",
+    "Private, authorized delivery of videos, PDFs, and files",
+    "Optional student watermarking on media",
+    "English and Malayalam language switcher",
+    "Security and audit activity log"
+  ],
+  "category": "education",
+  "tags": [
+    "learning",
+    "education",
+    "bilingual",
+    "access-control",
+    "media"
+  ],
+  "last_updated": "2026-10-06T03:56:21.051Z"
+}
