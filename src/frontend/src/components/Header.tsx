@@ -1,3 +1,4 @@
+import { AdminMenu } from "@/components/AdminMenu";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/hooks/useLanguage";
@@ -123,6 +124,8 @@ export function Header() {
               {t("nav.signIn")}
             </Button>
           )}
+
+          <AdminMenu />
 
           <Button
             type="button"

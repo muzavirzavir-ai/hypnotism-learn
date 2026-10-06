@@ -19,6 +19,8 @@ export const translations = {
     "nav.signOut": "Sign Out",
     "nav.menu": "Open menu",
     "nav.closeMenu": "Close menu",
+    "nav.more": "More options",
+    "nav.adminAccess": "Admin access",
 
     "lang.label": "Language",
     "lang.en": "English",
@@ -354,6 +356,8 @@ export const translations = {
     "nav.signOut": "സൈൻ ഔട്ട്",
     "nav.menu": "മെനു തുറക്കുക",
     "nav.closeMenu": "മെനു അടയ്ക്കുക",
+    "nav.more": "കൂടുതൽ ഓപ്ഷനുകൾ",
+    "nav.adminAccess": "അഡ്മിൻ പ്രവേശനം",
 
     "lang.label": "ഭാഷ",
     "lang.en": "English",
@@ -501,7 +505,7 @@ export const translations = {
     "admin.lessons.titleEn": "ശീർഷകം (ഇംഗ്ലീഷ്)",
     "admin.lessons.titleMl": "ശീർഷകം (മലയാളം)",
     "admin.lessons.bodyEn": "ഉള്ളടക്കം (ഇംഗ്ലീഷ്)",
-    "admin.lessons.bodyMl": "ഉള്ളടക്കം (മലയാളം)",
+    "admin.lessons.bodyMl": "ഉള്ളട��്കം (മലയാളം)",
     "admin.lessons.save": "പാഠം സേവ് ചെയ്യുക",
     "admin.lessons.saving": "സേവ് ചെയ്യുന്നു…",
     "admin.lessons.created": "പാഠം സൃഷ്ടിച്ചു",
@@ -661,7 +665,7 @@ export const translations = {
 
     "footer.disclaimerTitle": "വിദ്യാഭ്യാസപരവും ധാർമ്മികവുമായ ഉപയോഗം",
     "footer.disclaimer":
-      "ഹിപ്നോട്ടിസം ഒരു വിദ്യാഭ്യാസ പ്ലാറ്റ്ഫോമാണ്. എല്ലാ കോഴ്സുകളും വ്യക്തിഗത വളർച്ച, ചികിത്സാപരമായ അവബോധം, ധാർമ്മിക തൊഴിൽ പരിശീലനം എന്നിവയ്ക്കായുള്ള ഹിപ്നോട്ടിസം സാങ്കേതിക വിദ്യകൾ പഠിപ്പിക്കുന്നു. യോഗ്യതയുള്ള വൈദ്യ അല്ലെങ്കിൽ മനഃശാസ്ത്ര പരിചരണത്തിന് ഇത് പകരമല്ല, മറ്റുള്ളവരെ കൈകാര്യം ചെയ്യാനോ നിർബന്ധിക്കാനോ ദ്രോഹിക്കാനോ ഇത് ഒരിക്കലും ഉപയോഗിക്കരുത്.",
+      "ഹിപ്നോട്ടിസം ഒരു വിദ്യാഭ്യാസ പ്ലാറ്റ്ഫോമാണ്. എല്ലാ കോഴ്സുകളും വ്യക്തിഗത വളർച്ച, ചികിത്സാപരമായ അവബോധം, ധാർമ്മിക തൊഴിൽ പരിശീലനം എന്നിവയ്ക്കായുള്ള ഹിപ്നോട്ടിസം സാങ്കേതിക വിദ്യകൾ പഠിപ്പിക��കുന്നു. യോഗ്യതയുള്ള വൈദ്യ അല്ലെങ്കിൽ മനഃശാസ്ത്ര പരിചരണത്തിന് ഇത് പകരമല്ല, മറ്റുള്ളവരെ കൈകാര്യം ചെയ്യാനോ നിർബന്ധിക്കാനോ ദ്രോഹിക്കാനോ ഇത് ഒരിക്കലും ഉപയോഗിക്കരുത്.",
     "footer.privacy": "സ്വകാര്യതാ നയം",
     "footer.terms": "സേവന നിബന്ധനകൾ",
     "footer.ethics": "ധാർമ്മിക കോഡ്",
